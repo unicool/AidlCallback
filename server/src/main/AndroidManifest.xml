@@ -21,7 +21,7 @@
         <service
             android:name=".server.MyService"
             android:exported="true"
-            android:process="aidlcallback">
+            android:process=":c2s2c">
             <intent-filter>
                 <action android:name="com.unicool.aidlcallback.server.MyService" />
             </intent-filter>
