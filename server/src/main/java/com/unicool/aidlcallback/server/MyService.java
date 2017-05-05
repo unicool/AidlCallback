@@ -29,7 +29,7 @@ public class MyService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "MyService onStartCommand: startId=" + startId);
-//        cbClient(startId);
+//        callbackClient(startId);
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -37,7 +37,7 @@ public class MyService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         Log.d(TAG, "MyService onBind: ");
-//        cbClient(-1);
+//        callbackClient(-1);
         return mBinder;
     }
 
@@ -60,7 +60,7 @@ public class MyService extends Service {
 
     ///
 
-    private void cbClient(int val) {
+    private void callbackClient(int val) {
         final int N = mRcbList.beginBroadcast();
         Log.d(TAG, "RemoteCallbackList N: " + N);
         for (int i = 0; i < N; i++) {
@@ -92,12 +92,11 @@ public class MyService extends Service {
         @Override
         public void registerCallback(ITaskCallback cb) {
             Log.d(TAG, "ITaskBinder registerCallback: " + (cb != null));
-            if (cb != null) {
-                mRcbList.register(cb);
+            if (cb == null) return;
+            mRcbList.register(cb);
 
-                // TODO: 2017/5/5 先注册，后使用 
-                cbClient(new Random().nextInt());
-            }
+            // TODO: 2017/5/5 先注册，后使用 
+            callbackClient(new Random().nextInt());
         }
 
         @Override

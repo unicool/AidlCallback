@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="16dp"
     android:orientation="vertical"
-    tools:context="com.unicool.aidlcallback.client.MainActivity"
+    tools:context="com.unicool.aidlclient.MainActivity"
     tools:ignore="HardcodedText">
 
     <TextView
